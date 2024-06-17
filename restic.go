@@ -64,11 +64,17 @@ func defaultOpts() ResticOpts {
 	}
 }
 
+// Restic provides an instance to call Restic command line actions like backups, snapshots etc...
 type Restic struct {
 	command string
 	flags   []string
 }
 
+// NewRestic returns an instance of Restic
+// With the Restic instance you can call Restic actions like Backup
+// Example:
+// resticClient := resticgo.NewRestic()
+// resticClient.Backup([]string{"/tmp/test.txt"})
 func NewRestic(opts ...ResticOptFunc) *Restic {
 	o := defaultOpts()
 	for _, opt := range opts {

@@ -89,3 +89,21 @@ func TestRestic_Version(t *testing.T) {
 	}
 	t.Log(res)
 }
+
+func TestRestic_Cat(t *testing.T) {
+	restic := NewRestic(WithoutCache)
+	res, err := restic.Cat("snapshot", "9feda324")
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log(res)
+}
+
+func TestRestic_Ls(t *testing.T) {
+	restic := NewRestic(WithoutCache)
+	res, err := restic.Ls("9feda324")
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log(res)
+}

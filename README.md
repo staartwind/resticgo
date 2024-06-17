@@ -33,3 +33,4 @@ for _, elem := range snapshots {
 ## TODO:
 - [ ] Make the json responses typed using structs, maybe not because we cannot be sure which restic version is being used
 - [ ] Add unit tests
+- [ ] Write docs with all the possible methods etc...
