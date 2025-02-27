@@ -2,10 +2,17 @@ package resticgo
 
 import (
 	"fmt"
+	"github.com/joho/godotenv"
 	"os"
 	"path/filepath"
 	"testing"
 )
+
+func TestMain(m *testing.M) {
+	godotenv.Load()
+
+	m.Run()
+}
 
 func TestNewRestic(t *testing.T) {
 	restic := NewRestic(WithRepository("kaas"), WithoutCache)
@@ -102,6 +109,15 @@ func TestRestic_Cat(t *testing.T) {
 func TestRestic_Ls(t *testing.T) {
 	restic := NewRestic(WithoutCache)
 	res, err := restic.Ls("9feda324")
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log(res)
+}
+
+func TestRestic_ListLocks(t *testing.T) {
+	restic := NewRestic(WithoutCache)
+	res, err := restic.ListLocks()
 	if err != nil {
 		t.Fatal(err)
 	}
