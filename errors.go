@@ -9,7 +9,8 @@ func (e *NoResticBinaryError) Error() string {
 }
 
 type ResticFailedError struct {
-	err string
+	err      string
+	ExitCode int
 }
 
 func (e *ResticFailedError) Error() string {

@@ -26,7 +26,7 @@ func execute(command []string) (string, error) {
 			return "", &NoResticBinaryError{"Cannot find restic installed"}
 		}
 		slog.Debug(fmt.Sprintf("Restic command completed with return code %d", cmd.ProcessState.ExitCode()))
-		return "", &ResticFailedError{err: fmt.Sprintf("Restic failed with exit code %d: %s", cmd.ProcessState.ExitCode(), stderr.String())}
+		return "", &ResticFailedError{err: fmt.Sprintf("Restic failed with exit code %d: %s", cmd.ProcessState.ExitCode(), stderr.String()), ExitCode: cmd.ProcessState.ExitCode()}
 	}
 
 	slog.Debug(fmt.Sprintf("Restic command completed with return code %d", cmd.ProcessState.ExitCode()))
